@@ -1,4 +1,5 @@
 import socket
+import sys
 
 host = "10.1.2.17"
 port = 13337
@@ -10,7 +11,9 @@ s.bind((host, port))
 s.listen(1)
 
 conn, addr = s.accept()
-
+data = conn.recv(1024)
+if not data : 
+    sys.exit()
 print(f'Un client vient de se co et son IP c\'est {addr}')
 
 while True :
@@ -22,9 +25,9 @@ while True :
         if not data : break
         print(data)
         print(f"Données reçues du client : {data.decode()}")
-        if data == "meo":
+        if "meo" in data :
             conn.sendall("Meo à toi confrère.".encode('utf-8'))
-        elif data == "waf":
+        elif "waf" in data :
             conn.sendall(b"ptdr t ki")
         else :
             conn.sendall(b"Mes respects humble humain.")
