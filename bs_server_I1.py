@@ -19,7 +19,7 @@ while True :
         
         if not data : break
         
-        conn.sendall("Hi mate !")
+        conn.sendall(b"Hi mate !")
         
         print(f"Données reçues du client : {data}")
     
