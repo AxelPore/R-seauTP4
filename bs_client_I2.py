@@ -16,8 +16,8 @@ except :
     s.connect((host, port))
 
 message = input('Que veux-tu envoyer au serveur : ')
-message.encode('utf-8')
-s.sendall({message})
+
+s.sendall(message.encode('utf-8'))
 
 data = s.recv(1024)
 
