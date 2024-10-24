@@ -20,7 +20,7 @@ while True :
         data = conn.recv(1024)
         
         if not data : break
-        print(f"Données reçues du client : {data}")
+        print(f"Données reçues du client : {data.decode()}")
         if "meo" in data.decode():
             conn.sendall("Meo à toi confrère.".encode('utf-8'))
         elif data.decode() == "waf":
