@@ -24,7 +24,6 @@ while True :
         
         if not data : break
         message = data.decode()
-        print(data)
         print(f"Données reçues du client : {message}")
         if "meo" in message :
             conn.sendall("Meo à toi confrère.".encode('utf-8'))
