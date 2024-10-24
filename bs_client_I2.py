@@ -21,7 +21,9 @@ s.sendall(message.encode('utf-8'))
 
 data = s.recv(1024)
 
-print(f"Le serveur a répondu {repr(data.decode())}")
+response = data.decode()
+
+print(f"Le serveur a répondu {repr(response)}")
 
 s.close()
 
