@@ -22,7 +22,7 @@ while True :
         
         data = conn.recv(1024)
         
-        if not data : break
+        #if not data : break
         message = data.decode()
         print(f"Données reçues du client : {message}")
         if "meo" in message :
