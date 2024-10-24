@@ -23,11 +23,12 @@ while True :
         data = conn.recv(1024)
         
         if not data : break
+        message = data.decode()
         print(data)
-        print(f"Données reçues du client : {data.decode()}")
-        if "meo" in data :
+        print(f"Données reçues du client : {message}")
+        if "meo" in message :
             conn.sendall("Meo à toi confrère.".encode('utf-8'))
-        elif "waf" in data :
+        elif "waf" in message :
             conn.sendall(b"ptdr t ki")
         else :
             conn.sendall(b"Mes respects humble humain.")
