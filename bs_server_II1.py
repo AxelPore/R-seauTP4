@@ -11,6 +11,7 @@ parser.add_argument("-p", "--port", action="store")
 parser.add_argument("-h", "--help", action="store_true")
 parser.add_argument("-l", "--listen", action="store")
 
+
 def port_receive():
     port = 13337
     port = parser.parse_args()
@@ -50,7 +51,7 @@ def host_recieve():
             else :
                 return host
                     
-def help():
+def Shelp():
     help = parser.parse_args()
     if help:
         print("Usage: python server.py [options]")
@@ -99,7 +100,7 @@ def server(host, port):
             break
 
 def main() :
-    help()
+    Shelp()
     port = port_receive()
     host = host_recieve()
     server(host, port)
