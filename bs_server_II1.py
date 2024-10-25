@@ -40,6 +40,7 @@ def host_recieve(host):
         dic = net_if_addrs()
         addr = None
         compteur = 0
+        print(dic)
         for key, value in dic.items():
             for i in range(len(value)):
                 addr = value[i].address                
