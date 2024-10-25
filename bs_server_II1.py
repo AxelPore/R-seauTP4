@@ -43,7 +43,8 @@ def host_recieve(host):
         
         for key, value in dic.items():
             for i in range(len(value)):
-                addr = value[i].address
+                if value[i].family == socket.AddressFamily.AF_INET:
+                    addr = value[i].address
                 print(addr)                
                 if addr == host :
                     compteur = 0
