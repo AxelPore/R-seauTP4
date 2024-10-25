@@ -41,7 +41,7 @@ def host_recieve(host):
         compteur = 0
         
         for key, value in dic.items():
-            print(host)
+            
             for i in range(len(value)):
                 if value[i].family == socket.AddressFamily.AF_INET:
                     addr = value[i].address
@@ -51,7 +51,7 @@ def host_recieve(host):
                     break
                 else :
                     compteur += 1
-                    
+        print(compteur)            
         if compteur != 0 :
             ValueError(f"ERROR -l argument invalide. L'adresse {host} n'est pas l'une des adresses IP de cette machine.")
             sys.exit(4)     
