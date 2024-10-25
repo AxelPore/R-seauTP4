@@ -13,7 +13,7 @@ parser.add_argument("-l", "--listen", action="store")
 args = parser.parse_args()
 
 
-def port_receive():
+def port_receive(port):
     port = 13337
     
     if type(port) != int :
@@ -27,7 +27,7 @@ def port_receive():
     else :
         return port 
 
-def host_recieve():
+def host_recieve(host):
 
     
     if not re.search(r'^(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$', host) :
@@ -52,7 +52,7 @@ def host_recieve():
             else :
                 return host
                     
-def Shelp():
+def Shelp(help):
     
     if help:
         print("Usage: python server.py [options]")
