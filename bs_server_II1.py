@@ -4,8 +4,7 @@ import argparse
 import re
 from psutil import net_if_addrs
 
-port = 13337
-host = "10.1.2.17"
+
 
 parser = argparse.ArgumentParser()
 parser = argparse.ArgumentParser(add_help=False)
@@ -108,6 +107,8 @@ def server(host, port):
             break
 
 def main() :
+    port = 13337
+    host = "10.1.2.17"
     Shelp(args.help)
     if args.port != None :
         port = port_receive(args.port)
