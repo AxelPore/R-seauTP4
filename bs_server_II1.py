@@ -4,6 +4,8 @@ import argparse
 import re
 from psutil import net_if_addrs
 
+port = 13337
+
 parser = argparse.ArgumentParser()
 parser = argparse.ArgumentParser(add_help=False)
 
@@ -14,7 +16,7 @@ args = parser.parse_args()
 
 
 def port_receive(port):
-    port = 13337
+    
     
     if type(port) != int :
         TypeError("Need a valid port")
