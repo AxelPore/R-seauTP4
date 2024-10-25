@@ -37,24 +37,16 @@ def host_recieve(host):
         sys.exit(3)
     else :
         dic = net_if_addrs()
-        addr = None
-        compteur = 0
-        
+        addr = None       
         for key, value in dic.items():
             
             for i in range(len(value)):
                 if value[i].family == socket.AddressFamily.AF_INET:
                     addr = value[i].address                
                 if addr == host :
-                    compteur = 0
-                    break
-                else :
-                    compteur += 1            
-        if compteur > 0 :
-            print(f"ERROR -l argument invalide. L'adresse {host} n'est pas l'une des adresses IP de cette machine.")
-            sys.exit(4)     
-        else :
-            return host
+                    return host            
+        print(f"ERROR -l argument invalide. L'adresse {host} n'est pas l'une des adresses IP de cette machine.")
+        sys.exit(4)     
                     
 def Shelp(help):
     
