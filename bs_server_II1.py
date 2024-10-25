@@ -8,13 +8,16 @@ parser = argparse.ArgumentParser()
 parser = argparse.ArgumentParser(add_help=False)
 
 parser.add_argument("-p", "--port", action="store")
+port = parser.parse_args()
 parser.add_argument("-h", "--help", action="store_true")
+help = parser.parse_args()
 parser.add_argument("-l", "--listen", action="store")
+host = parser.parse_args()
 
 
 def port_receive():
     port = 13337
-    port = parser.parse_args()
+    
     if type(port) != int :
         TypeError("Need a valid port")
     elif 0 > port or 65535 < port :
@@ -27,8 +30,8 @@ def port_receive():
         return port 
 
 def host_recieve():
-    host = ""
-    host = parser.parse_args()
+
+    
     if not re.search(r'^(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$', host) :
         ValueError(f"ERROR -l argument invalide. L'adresse {host} n'est pas une adresse IP valide.")
         sys.exit(3)
@@ -52,7 +55,7 @@ def host_recieve():
                 return host
                     
 def Shelp():
-    help = parser.parse_args()
+    
     if help:
         print("Usage: python server.py [options]")
         print("Options:")
@@ -100,7 +103,7 @@ def server(host, port):
             break
 
 def main() :
-    Shelp()
-    port = port_receive()
-    host = host_recieve()
+    Shelp(help)
+    port = port_receive(port)
+    host = host_recieve(host)
     server(host, port)
