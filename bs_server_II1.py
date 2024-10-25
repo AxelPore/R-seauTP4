@@ -53,11 +53,11 @@ def host_recieve(host):
                 else :
                     compteur += 1
                     
-            if compteur != 0 :
-                ValueError(f"ERROR -l argument invalide. L'adresse {host} n'est pas l'une des adresses IP de cette machine.")
-                sys.exit(4)     
-            else :
-                return host
+        if compteur != 0 :
+            ValueError(f"ERROR -l argument invalide. L'adresse {host} n'est pas l'une des adresses IP de cette machine.")
+            sys.exit(4)     
+        else :
+            return host
                     
 def Shelp(help):
     
