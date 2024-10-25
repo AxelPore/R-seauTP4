@@ -105,3 +105,5 @@ def main() :
     port = port_receive(args.port)
     host = host_recieve(args.host)
     server(host, port)
+
+main()
