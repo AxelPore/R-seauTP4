@@ -53,7 +53,7 @@ def host_recieve(host):
                     compteur += 1
         print(compteur)            
         if compteur > 0 :
-            ValueError(f"ERROR -l argument invalide. L'adresse {host} n'est pas l'une des adresses IP de cette machine.")
+            print(f"ERROR -l argument invalide. L'adresse {host} n'est pas l'une des adresses IP de cette machine.")
             sys.exit(4)     
         else :
             print(compteur)
