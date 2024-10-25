@@ -104,8 +104,10 @@ def server(host, port):
 
 def main() :
     Shelp(args.help)
-    port = port_receive(args.port)
-    host = host_recieve(args.host)
+    if args.port != None :
+        port = port_receive(args.port)
+    if args.listen != None :
+        host = host_recieve(args.listen)
     server(host, port)
 
 main()
