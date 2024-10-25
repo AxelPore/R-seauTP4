@@ -101,7 +101,7 @@ def main() :
     host = "10.1.2.17"
     Shelp(args.help)
     if args.port != None :
-        port = port_receive(args.port)
+        int(port) = port_receive(args.port)
     if args.listen != None :
         host = host_recieve(args.listen)
     server(host, port)
