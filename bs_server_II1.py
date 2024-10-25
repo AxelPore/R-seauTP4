@@ -4,10 +4,15 @@ import argparse
 import re
 from psutil import net_if_addrs
 
+parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser(add_help=False)
+
+parser.add_argument("-p", "--port", action="store")
+parser.add_argument("-h", "--help", action="store_true")
+parser.add_argument("-l", "--listen", action="store")
+
 def port_receive():
     port = 13337
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-p", "--port", action="store")
     port = parser.parse_args()
     if type(port) != int :
         TypeError("Need a valid port")
@@ -22,8 +27,6 @@ def port_receive():
 
 def host_recieve():
     host = ""
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-l", "--listen", action="store")
     host = parser.parse_args()
     if not re.search(r'^(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$', host) :
         ValueError(f"ERROR -l argument invalide. L'adresse {host} n'est pas une adresse IP valide.")
@@ -48,8 +51,6 @@ def host_recieve():
                 return host
                     
 def help():
-    parser = argparse.ArgumentParser(add_help=False)
-    parser.add_argument("-h", "--help", action="store_true")
     help = parser.parse_args()
     if help:
         print("Usage: python server.py [options]")
