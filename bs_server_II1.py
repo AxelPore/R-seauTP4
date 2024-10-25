@@ -19,12 +19,12 @@ def port_receive(port):
     
     
     if type(port) != int :
-        TypeError("Need a valid port")
+        print("Need a valid port")
     elif 0 > port or 65535 < port :
-        ValueError(f'ERROR -p argument invalide. Le port spécifié {port} est un port privilégié. Spécifiez un port au dessus de 1024.')
+        print(f'ERROR -p argument invalide. Le port spécifié {port} est un port privilégié. Spécifiez un port au dessus de 1024.')
         sys.exit(1)
     elif 0 < port and 1024 > port :
-        ValueError(f'ERROR -p argument invalide. Le port spécifié {port} est un port privilégié. Spécifiez un port au dessus de 1024.')
+        print(f'ERROR -p argument invalide. Le port spécifié {port} est un port privilégié. Spécifiez un port au dessus de 1024.')
         sys.exit(2)
     else :
         return port 
@@ -33,7 +33,7 @@ def host_recieve(host):
 
     
     if not re.search(r'^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$', host) :
-        ValueError(f"ERROR -l argument invalide. L'adresse {host} n'est pas une adresse IP valide.")
+        print(f"ERROR -l argument invalide. L'adresse {host} n'est pas une adresse IP valide.")
         sys.exit(3)
     else :
         dic = net_if_addrs()
@@ -44,19 +44,16 @@ def host_recieve(host):
             
             for i in range(len(value)):
                 if value[i].family == socket.AddressFamily.AF_INET:
-                    addr = value[i].address
-                print(addr)                
+                    addr = value[i].address                
                 if addr == host :
                     compteur = 0
                     break
                 else :
-                    compteur += 1
-        print(compteur)            
+                    compteur += 1            
         if compteur > 0 :
             print(f"ERROR -l argument invalide. L'adresse {host} n'est pas l'une des adresses IP de cette machine.")
             sys.exit(4)     
         else :
-            print(compteur)
             return host
                     
 def Shelp(help):
