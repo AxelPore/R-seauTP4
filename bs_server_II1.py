@@ -56,6 +56,7 @@ def host_recieve(host):
             ValueError(f"ERROR -l argument invalide. L'adresse {host} n'est pas l'une des adresses IP de cette machine.")
             sys.exit(4)     
         else :
+            print(compteur)
             return host
                     
 def Shelp(help):
