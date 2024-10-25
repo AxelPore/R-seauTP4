@@ -5,6 +5,7 @@ import re
 from psutil import net_if_addrs
 
 port = 13337
+host = "10.1.2.17"
 
 parser = argparse.ArgumentParser()
 parser = argparse.ArgumentParser(add_help=False)
