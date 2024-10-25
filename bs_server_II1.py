@@ -33,7 +33,7 @@ def port_receive(port):
 def host_recieve(host):
 
     
-    if not re.search(r'^(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$', host) :
+    if not re.search(r'^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$', host) :
         ValueError(f"ERROR -l argument invalide. L'adresse {host} n'est pas une adresse IP valide.")
         sys.exit(3)
     else :
