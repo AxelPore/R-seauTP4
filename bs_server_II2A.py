@@ -4,6 +4,7 @@ import argparse
 import re
 from psutil import net_if_addrs
 import logging
+import time
 
 logging.basicConfig(
     level=10,
@@ -72,13 +73,15 @@ def server(host, port):
     s.bind((host, port))
     logging.info(f"Le serveur tourne sur {host}:{port}")
     s.listen(1)
-
+    
     conn, addr = s.accept()
     data = conn.recv(1024)
     if not data : 
         sys.exit()
-    print(f'Un client vient de se co et son IP c\'est {addr}')
-
+    logging.info(f"Un client ({addr}) s'est connecté.")
+    while False :
+        time.sleep(60.0)
+        logging.warning(f"Aucun client depuis plus de une minute.")
     while True :
         
         try :
@@ -87,13 +90,20 @@ def server(host, port):
             
             if not data : break
             message = data.decode()
-            print(f"Données reçues du client : {message}")
+            logging.info(f"Le client {addr} a envoyé \"{message}\".")
+            response = ""
             if "meo" in message :
-                conn.sendall("Meo à toi confrère.".encode('utf-8'))
+                response = "Meo à toi confrère."
+                conn.sendall(response.encode('utf-8'))
+                logging.info(f"Réponse envoyée au client {addr} : \"{response}\".")
             elif "waf" in message :
-                conn.sendall(b"ptdr t ki")
+                response = "ptdr t ki"
+                conn.sendall(response.encode('utf-8'))
+                logging.info(f"Réponse envoyée au client {addr} : \"{response}\".")
             else :
-                conn.sendall(b"Mes respects humble humain.")
+                response = "Mes respects humble humain."
+                conn.sendall(response.encode('utf-8'))
+                logging.info(f"Réponse envoyée au client {addr} : \"{response}\".")
             
             
         
