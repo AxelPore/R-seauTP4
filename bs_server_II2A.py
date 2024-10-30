@@ -84,7 +84,7 @@ def server(host, port):
     logger.info(f"Le serveur tourne sur {host}:{port}")
     now = datetime.datetime.now()
     last_minute = now.minute
-
+    print(last_minute, now.minute)
 
     while True :
         
