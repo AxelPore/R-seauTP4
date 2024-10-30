@@ -98,7 +98,7 @@ def server(host, port):
             
             if now.minute != last_minute :
                 last_minute = now.minute
-            logger.warning(f"Aucun client depuis plus de une minute.")
+                logger.warning(f"Aucun client depuis plus de une minute.")
             
             data = conn.recv(1024)
             
@@ -123,6 +123,7 @@ def server(host, port):
                 conn.sendall(response.encode('utf-8'))
                 logger.info(f"Réponse envoyée au client {addr[0]} : \"{response}\".")
             conn.close()
+            sys.exit()
             
             
         
