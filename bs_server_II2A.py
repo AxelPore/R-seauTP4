@@ -9,16 +9,18 @@ now = datetime.datetime.now()
 last_minute = now.minute
 
 logger = logging.getLogger("logs")
-console_handler = logging.StreamHandler(),
-file_handler = logging.FileHandler("/var/log/bs_server/bs_server.log", mode="a", encoding="utf-8"),
-logger.addHandler(console_handler)
-logger.addHandler(file_handler)
+logger.setLevel(10)
 formatter = logging.Formatter(
     "{asctime}  {levelname}  {message}",
     style="{",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
-logger.setLevel(10)
+console_handler = logging.StreamHandler(),
+file_handler = logging.FileHandler("/var/log/bs_server/bs_server.log", mode="a", encoding="utf-8"),
+logger.addHandler(console_handler)
+logger.addHandler(file_handler)
+
+
 logger.warning(f"hello {last_minute}")
 parser = argparse.ArgumentParser()
 parser = argparse.ArgumentParser(add_help=False)
