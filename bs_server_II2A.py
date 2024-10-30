@@ -6,6 +6,7 @@ from psutil import net_if_addrs
 import logging
 
 logging.basicConfig(
+    level=10
     format="{asctime}  {levelname}  {message}",
     style="{",
     datefmt="%Y-%m-%d %H:%M:%S",
