@@ -18,7 +18,7 @@ formatter = logging.Formatter(
     style="{",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
-
+logger.warning(f"hello {last_minute}")
 parser = argparse.ArgumentParser()
 parser = argparse.ArgumentParser(add_help=False)
 
