@@ -10,7 +10,7 @@ logging.basicConfig(
     style="{",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
-
+logging.info(f"Le serveur tourne sur {host}:{port}")
 parser = argparse.ArgumentParser()
 parser = argparse.ArgumentParser(add_help=False)
 
@@ -69,7 +69,7 @@ def server(host, port):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     s.bind((host, port))
-    logging.info(f"Le serveur tourne sur {host}:{port}")
+    
     s.listen(1)
 
     conn, addr = s.accept()
