@@ -14,7 +14,6 @@ file_handler = logging.FileHandler("/var/log/bs_server/bs_server.log", mode="a",
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 formatter = logging.Formatter(
-    level=10,
     format="{asctime}  {levelname}  {message}",
     style="{",
     datefmt="%Y-%m-%d %H:%M:%S",
