@@ -21,7 +21,7 @@ logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
 
-logger.warning(f"hello {last_minute}")
+logger.warning("hello")
 parser = argparse.ArgumentParser()
 parser = argparse.ArgumentParser(add_help=False)
 
