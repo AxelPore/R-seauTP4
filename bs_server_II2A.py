@@ -6,6 +6,9 @@ from psutil import net_if_addrs
 import logging
 
 logging.basicConfig(
+    filename="/var/log/bs_server/bs_server.log",
+    encoding="utf-8",
+    filemode="a",
     format="{asctime}  {levelname}  {message}",
     style="{",
     datefmt="%Y-%m-%d %H:%M:%S",
