@@ -10,7 +10,7 @@ logging.basicConfig(
     style="{",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
-logging.info(f"Le serveur tourne sur {host}:{port}")
+
 parser = argparse.ArgumentParser()
 parser = argparse.ArgumentParser(add_help=False)
 
@@ -104,6 +104,7 @@ def server(host, port):
 def main() :
     port = 13337
     host = "10.1.2.17"
+    logging.info(f"Le serveur tourne sur {host}:{port}")
     Shelp(args.help)
     if args.port != None :
         port = port_receive(int(args.port))
