@@ -91,30 +91,38 @@ def server(host, port):
         try :
             conn, addr = s.accept()
             data = conn.recv(1024)
+            
             if not data : 
                 sys.exit()
             logger.info(f"Un client ({addr[0]}) s'est connecté.")
+            
             if now.minute != last_minute :
                 last_minute = now.minute
             logger.warning(f"Aucun client depuis plus de une minute.")
+            
             data = conn.recv(1024)
             
             if not data : break
             message = data.decode()
             logger.info(f"Le client {addr[0]} a envoyé \"{message}\".")
             response = ""
+            
             if "meo" in message :
                 response = "Meo à toi confrère."
                 conn.sendall(response.encode('utf-8'))
                 logger.info(f"Réponse envoyée au client {addr[0]} : \"{response}\".")
+                
+                
             elif "waf" in message :
                 response = "ptdr t ki"
                 conn.sendall(response.encode('utf-8'))
                 logger.info(f"Réponse envoyée au client {addr[0]} : \"{response}\".")
+                
             else :
                 response = "Mes respects humble humain."
                 conn.sendall(response.encode('utf-8'))
                 logger.info(f"Réponse envoyée au client {addr[0]} : \"{response}\".")
+            conn.close()
             
             
         
