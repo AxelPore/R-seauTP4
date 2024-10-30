@@ -5,8 +5,6 @@ import re
 from psutil import net_if_addrs
 import logging
 import datetime
-now = datetime.datetime.now()
-last_minute = now.minute
 
 logger = logging.getLogger("logs")
 logger.setLevel(10)
@@ -83,7 +81,8 @@ def server(host, port):
     s.bind((host, port))
     logger.info(f"Le serveur tourne sur {host}:{port}")
     s.listen(1)
-    
+    now = datetime.datetime.now()
+    last_minute = now.minute
 
 
     while True :
