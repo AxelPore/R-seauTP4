@@ -8,9 +8,8 @@ import datetime
 now = datetime.datetime.now()
 last_minute = now.minute
 logging.basicConfig(
-    filename="/var/log/bs_server/bs_server.log",
-    encoding="utf-8",
-    filemode="a",
+    console_handler = logging.StreamHandler(),
+    file_handler = logging.FileHandler("/var/log/bs_server/bs_server.log", mode="a", encoding="utf-8"),
     level=10,
     format="{asctime}  {levelname}  {message}",
     style="{",
