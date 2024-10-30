@@ -74,7 +74,9 @@ def server(host, port):
     s.bind((host, port))
     logging.info(f"Le serveur tourne sur {host}:{port}")
     s.listen(1)
-    
+    if now.minute != last_minute :
+        last_minute = now.minute
+        logging.warning(f"Aucun client depuis plus de une minute.")
     conn, addr = s.accept()
     data = conn.recv(1024)
     if not data : 
@@ -82,9 +84,7 @@ def server(host, port):
     logging.info(f"Un client ({addr}) s'est connecté.")
 
     while True :
-        if now.minute != last_minute :
-            last_minute = now.minute
-            logging.warning(f"Aucun client depuis plus de une minute.")
+        
         try :
             
             data = conn.recv(1024)
