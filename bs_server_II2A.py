@@ -8,13 +8,16 @@ import datetime
 now = datetime.datetime.now()
 last_minute = now.minute
 logging.basicConfig(
-    console_handler = logging.StreamHandler(),
-    file_handler = logging.FileHandler("/var/log/bs_server/bs_server.log", mode="a", encoding="utf-8"),
     level=10,
     format="{asctime}  {levelname}  {message}",
     style="{",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
+logger = logging.getLogger("logs")
+console_handler = logging.StreamHandler(),
+file_handler = logging.FileHandler("/var/log/bs_server/bs_server.log", mode="a", encoding="utf-8"),
+logger.addHandler(console_handler)
+logger.addHandler(file_handler)
 
 parser = argparse.ArgumentParser()
 parser = argparse.ArgumentParser(add_help=False)
@@ -74,39 +77,39 @@ def server(host, port):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     s.bind((host, port))
-    logging.info(f"Le serveur tourne sur {host}:{port}")
+    logger.info(f"Le serveur tourne sur {host}:{port}")
     s.listen(1)
     
     conn, addr = s.accept()
     data = conn.recv(1024)
     if not data : 
         sys.exit()
-    logging.info(f"Un client ({addr}) s'est connecté.")
+    logger.info(f"Un client ({addr}) s'est connecté.")
 
     while True :
         if now.minute != last_minute :
             last_minute = now.minute
-            logging.warning(f"Aucun client depuis plus de une minute.")
+            logger.warning(f"Aucun client depuis plus de une minute.")
         try :
             
             data = conn.recv(1024)
             
             if not data : break
             message = data.decode()
-            logging.info(f"Le client {addr} a envoyé \"{message}\".")
+            logger.info(f"Le client {addr} a envoyé \"{message}\".")
             response = ""
             if "meo" in message :
                 response = "Meo à toi confrère."
                 conn.sendall(response.encode('utf-8'))
-                logging.info(f"Réponse envoyée au client {addr} : \"{response}\".")
+                logger.info(f"Réponse envoyée au client {addr} : \"{response}\".")
             elif "waf" in message :
                 response = "ptdr t ki"
                 conn.sendall(response.encode('utf-8'))
-                logging.info(f"Réponse envoyée au client {addr} : \"{response}\".")
+                logger.info(f"Réponse envoyée au client {addr} : \"{response}\".")
             else :
                 response = "Mes respects humble humain."
                 conn.sendall(response.encode('utf-8'))
-                logging.info(f"Réponse envoyée au client {addr} : \"{response}\".")
+                logger.info(f"Réponse envoyée au client {addr} : \"{response}\".")
             
             
         
