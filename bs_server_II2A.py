@@ -4,8 +4,9 @@ import argparse
 import re
 from psutil import net_if_addrs
 import logging
-import time
-
+import datetime
+now = datetime.datetime.now()
+last_minute = now.minute
 logging.basicConfig(
     level=10,
     format="{asctime}  {levelname}  {message}",
@@ -79,11 +80,11 @@ def server(host, port):
     if not data : 
         sys.exit()
     logging.info(f"Un client ({addr}) s'est connecté.")
-    while False :
-        time.sleep(60.0)
-        logging.warning(f"Aucun client depuis plus de une minute.")
+
     while True :
-        
+        if now.minute != last_minute :
+            last_minute = now.minute
+            logging.warning(f"Aucun client depuis plus de une minute.")
         try :
             
             data = conn.recv(1024)
