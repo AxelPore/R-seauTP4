@@ -13,6 +13,12 @@ console_handler = logging.StreamHandler(),
 file_handler = logging.FileHandler("/var/log/bs_server/bs_server.log", mode="a", encoding="utf-8"),
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
+formatter = logging.Formatter(
+    level=10,
+    format="{asctime}  {levelname}  {message}",
+    style="{",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 
 parser = argparse.ArgumentParser()
 parser = argparse.ArgumentParser(add_help=False)
