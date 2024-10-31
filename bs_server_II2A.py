@@ -9,7 +9,8 @@ import datetime
 logger = logging.getLogger("logs")
 logger.setLevel(10)
 
-fmt = "%(asctime)s  %(levelname)8s  %(message)s", "%Y-%m-%d %H:%M:%S"
+fmt = "%(asctime)s  %(levelname)8s  %(message)s"
+datefmt = "%Y-%m-%d %H:%M:%S"
 class CustomFormatter(logging.Formatter):
 
     grey = '\x1b[38;21m'
@@ -19,15 +20,17 @@ class CustomFormatter(logging.Formatter):
     bold_red = '\x1b[31;1m'
     reset = '\x1b[0m'
 
+
     def __init__(self, fmt):
         super().__init__()
         self.fmt = fmt
         self.FORMATS = {
             logging.DEBUG: self.grey + self.fmt + self.reset,
             logging.INFO: self.blue + self.fmt + self.reset,
-            logging.WARNING: self.yellow + self.fmt + self.reset,
+            logging.WARNING: self.yellow + self.datefmt + self.fmt + self.reset,
             logging.ERROR: self.red + self.fmt + self.reset,
-            logging.CRITICAL: self.bold_red + self.fmt + self.reset
+            logging.CRITICAL: self.bold_red + self.fmt + self.reset,
+            
         }
 
     def format(self, record):
