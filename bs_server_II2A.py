@@ -131,6 +131,8 @@ def server(host, port):
             
             print("Error Occured.")
             break
+        conn.close()
+        sys.exit()
 
 def main() :
     port = 13337
