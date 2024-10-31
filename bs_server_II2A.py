@@ -25,10 +25,6 @@ class CustomFormatter(logging.Formatter):
         logging.CRITICAL: bold_red + format + reset
     }
 
-    def format(self, record):
-        log_fmt = self.FORMATS.get(record.levelno)
-        formatter = logging.Formatter(log_fmt)
-        return formatter.format(record)
 
 console_handler = logging.StreamHandler()
 file_handler = logging.FileHandler("/var/log/bs_server/bs_server.log", mode="a", encoding="utf-8")
