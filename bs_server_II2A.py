@@ -102,7 +102,7 @@ def server(host, port):
     s.bind((host, port))
     
     s.listen(1)
-    logger.info(f"Le serveur tourne sur {host}:{port}")
+    #logger.info(f"Le serveur tourne sur {host}:{port}")
     compteur = 0
     while True :
         if compteur == 10 :
