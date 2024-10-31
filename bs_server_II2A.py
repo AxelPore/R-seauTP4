@@ -18,6 +18,7 @@ class CustomFormatter(logging.Formatter):
     red = '\x1b[38;5;196m'
     bold_red = '\x1b[31;1m'
     reset = '\x1b[0m'
+    white = '\x1b[38;5;255m'
 
 
     def __init__(self, fmt):
@@ -25,7 +26,7 @@ class CustomFormatter(logging.Formatter):
         self.fmt = fmt
         self.FORMATS = {
             logging.DEBUG: "%(asctime)s" + self.grey + self.fmt + self.reset + " %(message)s",
-            logging.INFO: "%(asctime)s" + self.blue + self.fmt + self.reset + " %(message)s",
+            logging.INFO: "%(asctime)s" + self.white + self.fmt + self.reset + " %(message)s",
             logging.WARNING: "%(asctime)s" + self.yellow + self.fmt + self.reset + " %(message)s",
             logging.ERROR: "%(asctime)s" + self.red + self.fmt + self.reset + " %(message)s",
             logging.CRITICAL: "%(asctime)s" + self.bold_red + self.fmt + self.reset + " %(message)s",
