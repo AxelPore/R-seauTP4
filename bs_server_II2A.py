@@ -4,7 +4,6 @@ import argparse
 import re
 from psutil import net_if_addrs
 import logging
-import datetime
 
 logger = logging.getLogger("logs")
 logger.setLevel(10)
