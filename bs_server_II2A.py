@@ -88,11 +88,10 @@ def server(host, port):
 
     while True :
         
-        print(last_minute)
-        now = datetime.datetime.now()
-        if s.settimeout(60) is True :
+        
+        s.settimeout(60)
             
-            logger.warning(f"Aucun client depuis plus de une minute.")
+            
          
                 
                 
@@ -134,7 +133,7 @@ def server(host, port):
         
         except socket.error:
             
-            print("Error Occured.")
+            logger.warning(f"Aucun client depuis plus de une minute.")
             continue
         conn.close()
         sys.exit()
