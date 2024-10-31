@@ -18,7 +18,6 @@ class CustomFormatter(logging.Formatter):
     red = '\x1b[38;5;196m'
     bold_red = '\x1b[31;1m'
     reset = '\x1b[0m'
-    datefmt= "%Y-%m-%d %H:%M:%S"
 
     def __init__(self, fmt):
         super().__init__()
