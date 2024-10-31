@@ -29,10 +29,16 @@ class CustomFormatter(logging.Formatter):
         log_fmt = self.FORMATS.get(record.levelno)
         formatter = logging.Formatter(log_fmt)
         return formatter.format(record)
+
 console_handler = logging.StreamHandler()
 file_handler = logging.FileHandler("/var/log/bs_server/bs_server.log", mode="a", encoding="utf-8")
+
+file_handler.setFormatter(CustomFormatter)
+console_handler.setFormatter(CustomFormatter)
+
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
+
 # formatter = logging.Formatter(
     
 #     "{asctime}  {levelname}  {message}",
@@ -40,10 +46,9 @@ logger.addHandler(file_handler)
 #     datefmt="%Y-%m-%d %H:%M:%S",
 # )
 
-file_handler.setFormatter(CustomFormatter)
-console_handler.setFormatter(CustomFormatter)
 parser = argparse.ArgumentParser()
 parser = argparse.ArgumentParser(add_help=False)
+
 
 parser.add_argument("-p", "--port", action="store")
 parser.add_argument("-h", "--help", action="store_true")
@@ -102,7 +107,7 @@ def server(host, port):
     s.bind((host, port))
     
     s.listen(1)
-    #logger.info(f"Le serveur tourne sur {host}:{port}")
+    logger.info(f"Le serveur tourne sur {host}:{port}")
     compteur = 0
     while True :
         if compteur == 10 :
