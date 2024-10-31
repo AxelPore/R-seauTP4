@@ -17,13 +17,18 @@ class CustomFormatter(logging.Formatter):
     reset = "\x1b[0m"
     format = "%(asctime)s  %(levelname)s  %(message)s"
     datefmt="%Y-%m-%d %H:%M:%S"
-    FORMATS = {
-        logging.DEBUG: grey + format + reset,
-        logging.INFO: grey + format + reset,
-        logging.WARNING: yellow + datefmt + reset + format,
-        logging.ERROR: red + format + reset,
-        logging.CRITICAL: bold_red + format + reset
-    }
+    
+    
+    def __init__(self, fmt):
+        super().__init__()
+        self.fmt = fmt
+        self.FORMATS = {
+            logging.DEBUG: self.grey + self.format + self.reset,
+            logging.INFO: self.grey + self.format + self.reset,
+            logging.WARNING: self.yellow + self.datefmt + self.reset + self.format,
+            logging.ERROR: self.red + self.format + self.reset,
+            logging.CRITICAL: self.bold_red + self.format + self.reset
+        }
 
 
 console_handler = logging.StreamHandler()
