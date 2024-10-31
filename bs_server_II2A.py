@@ -84,7 +84,7 @@ def server(host, port):
     logger.info(f"Le serveur tourne sur {host}:{port}")
 
     while True :
-        
+        compteur = 0
         s.settimeout(60)                
         try :
             
@@ -125,6 +125,7 @@ def server(host, port):
         except socket.error:
             
             logger.warning(f"Aucun client depuis plus de une minute.")
+            compteur += 1
             continue
         conn.close()
         
