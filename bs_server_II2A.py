@@ -85,6 +85,8 @@ def server(host, port):
 
     while True :
         compteur = 0
+        if compteur == 10 :
+            sys.exit()
         s.settimeout(6)                
         try :
             
@@ -128,8 +130,7 @@ def server(host, port):
             compteur += 1
             continue
         conn.close()
-        if compteur == 10 :
-            sys.exit()
+        
         
 
 def main() :
