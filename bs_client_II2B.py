@@ -1,6 +1,50 @@
 import socket
 import sys 
 import re
+import logging
+
+logger = logging.getLogger("logs")
+logger.setLevel(10)
+fmt = "%(asctime)s %(levelname)8s %(message)s"
+class CustomFormatter(logging.Formatter):
+
+    grey = '\x1b[38;21m'
+    blue = '\x1b[38;5;39m'
+    yellow = '\x1b[38;5;226m'
+    red = '\x1b[38;5;196m'
+    bold_red = '\x1b[31;1m'
+    reset = '\x1b[0m'
+    white = '\x1b[38;5;255m'
+
+
+    def __init__(self, fmt):
+        super().__init__()
+        self.fmt = fmt
+        self.FORMATS = {
+            logging.DEBUG: self.fmt,
+            logging.INFO: self.fmt,
+            logging.WARNING: self.fmt,
+            logging.ERROR: self.fmt,
+            logging.CRITICAL: self.fmt,
+            
+        }
+
+    def format(self, record):
+        log_fmt = self.FORMATS.get(record.levelno)
+        formatter = logging.Formatter(log_fmt, datefmt="%Y-%m-%d %H:%M:%S")
+        return formatter.format(record)
+    
+console_handler = logging.StreamHandler()
+console_handler.setLevel(10)
+console_handler.setFormatter(CustomFormatter(fmt))
+
+file_handler = logging.FileHandler("/var/log/bs_server/bs_server.log", mode="a", encoding="utf-8")
+file_handler.setLevel(10)
+file_handler.setFormatter(logging.Formatter(fmt))
+
+logger.addHandler(console_handler)
+logger.addHandler(file_handler)
+
 
 host = "10.1.2.17"
 port = 13337

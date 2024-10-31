@@ -8,6 +8,7 @@ import logging
 logger = logging.getLogger("logs")
 logger.setLevel(10)
 fmt = "%(levelname)8s"
+fmt2 = "%(asctime)s %(levelname)8s %(message)s"
 class CustomFormatter(logging.Formatter):
 
     grey = '\x1b[38;21m'
@@ -42,7 +43,7 @@ console_handler.setFormatter(CustomFormatter(fmt))
 
 file_handler = logging.FileHandler("/var/log/bs_server/bs_server.log", mode="a", encoding="utf-8")
 file_handler.setLevel(10)
-file_handler.setFormatter(logging.Formatter(fmt))
+file_handler.setFormatter(logging.Formatter(fmt2))
 
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
