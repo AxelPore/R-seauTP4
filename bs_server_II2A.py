@@ -82,19 +82,10 @@ def server(host, port):
     
     s.listen(1)
     logger.info(f"Le serveur tourne sur {host}:{port}")
-    now = datetime.datetime.now()
-    last_minute = now.minute
-    addr = None
 
     while True :
         
-        
-        s.settimeout(5)
-            
-            
-         
-                
-                
+        s.settimeout(60)                
         try :
             
             conn, addr = s.accept()
