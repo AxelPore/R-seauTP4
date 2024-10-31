@@ -89,7 +89,7 @@ def server(host, port):
     while True :
         
         
-        s.settimeout(60)
+        s.settimeout(5)
             
             
          
