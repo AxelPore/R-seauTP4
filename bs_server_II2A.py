@@ -88,7 +88,7 @@ def server(host, port):
 
     while True :
         while addr == None :
-            
+            print(last_minute)
             if now.minute != last_minute :
                 last_minute = now.minute
                 logger.warning(f"Aucun client depuis plus de une minute.")
