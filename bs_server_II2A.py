@@ -8,7 +8,6 @@ import datetime
 
 logger = logging.getLogger("logs")
 logger.setLevel(10)
-
 fmt = "%(levelname)8s"
 class CustomFormatter(logging.Formatter):
 
@@ -48,16 +47,6 @@ file_handler.setFormatter(logging.Formatter(fmt))
 
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
-
-    
-
-
-
-
-
-
-
-
 
 parser = argparse.ArgumentParser()
 parser = argparse.ArgumentParser(add_help=False)
