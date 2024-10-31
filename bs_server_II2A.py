@@ -82,9 +82,9 @@ def server(host, port):
     
     s.listen(1)
     logger.info(f"Le serveur tourne sur {host}:{port}")
-
+    compteur = 0
     while True :
-        compteur = 0
+        
         if compteur == 10 :
             sys.exit()
         s.settimeout(6)                
@@ -128,7 +128,6 @@ def server(host, port):
             
             logger.warning(f"Aucun client depuis plus de une minute.")
             compteur += 1
-            print(compteur)
             continue
         conn.close()
         
