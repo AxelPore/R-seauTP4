@@ -29,6 +29,11 @@ class CustomFormatter(logging.Formatter):
             logging.ERROR: self.red + self.format + self.reset,
             logging.CRITICAL: self.bold_red + self.format + self.reset
         }
+        
+    def format(self, record):
+        log_fmt = self.FORMATS.get(record.levelno)
+        formatter = logging.Formatter(log_fmt)
+        return formatter.format(record)
 
 
 console_handler = logging.StreamHandler()
