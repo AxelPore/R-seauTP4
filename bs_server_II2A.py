@@ -123,7 +123,7 @@ def server(host, port):
     while True :
         if compteur == 10 :
             sys.exit()
-        s.settimeout(60)                
+        s.settimeout(6)                
         try :
             
             conn, addr = s.accept()
