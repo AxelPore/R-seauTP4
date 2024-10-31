@@ -128,6 +128,7 @@ def server(host, port):
             
             logger.warning(f"Aucun client depuis plus de une minute.")
             compteur += 1
+            print(compteur)
             continue
         conn.close()
         
