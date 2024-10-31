@@ -128,7 +128,7 @@ def server(host, port):
             compteur += 1
             continue
         conn.close()
-        if compteur = 10 :
+        if compteur == 10 :
             sys.exit()
         
 
