@@ -9,7 +9,7 @@ import datetime
 logger = logging.getLogger("logs")
 logger.setLevel(10)
 
-fmt = "%Y-%m-%d %H:%M:%S  %(levelname)8s  %(message)s"
+fmt = "%(asctime)s  %(levelname)8s  %(message)s", "%Y-%m-%d %H:%M:%S"
 class CustomFormatter(logging.Formatter):
 
     grey = '\x1b[38;21m'
@@ -18,7 +18,7 @@ class CustomFormatter(logging.Formatter):
     red = '\x1b[38;5;196m'
     bold_red = '\x1b[31;1m'
     reset = '\x1b[0m'
-    datefmt= ""
+    datefmt= "%Y-%m-%d %H:%M:%S"
 
     def __init__(self, fmt):
         super().__init__()
