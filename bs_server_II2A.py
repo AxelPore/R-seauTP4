@@ -9,8 +9,7 @@ import datetime
 logger = logging.getLogger("logs")
 logger.setLevel(10)
 
-fmt = "%(asctime)s  %(levelname)8s  %(message)s"
-datefmt = "%Y-%m-%d %H:%M:%S"
+fmt = "%(asctime)s  %(levelname)8s  "
 class CustomFormatter(logging.Formatter):
 
     grey = '\x1b[38;21m'
@@ -27,7 +26,7 @@ class CustomFormatter(logging.Formatter):
         self.FORMATS = {
             logging.DEBUG: self.grey + self.fmt + self.reset,
             logging.INFO: self.blue + self.fmt + self.reset,
-            logging.WARNING: self.yellow + self.datefmt + self.fmt + self.reset,
+            logging.WARNING: self.yellow + self.fmt + self.reset,
             logging.ERROR: self.red + self.fmt + self.reset,
             logging.CRITICAL: self.bold_red + self.fmt + self.reset,
             
