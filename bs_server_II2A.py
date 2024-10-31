@@ -8,12 +8,13 @@ import datetime
 
 logger = logging.getLogger("logs")
 logger.setLevel(10)
-
+yellow = "\x1b[33;20m"
 console_handler = logging.StreamHandler()
 file_handler = logging.FileHandler("/var/log/bs_server/bs_server.log", mode="a", encoding="utf-8")
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 formatter = logging.Formatter(
+    logger.warning: yellow 
     "{asctime}  {levelname}  {message}",
     style="{",
     datefmt="%Y-%m-%d %H:%M:%S",
