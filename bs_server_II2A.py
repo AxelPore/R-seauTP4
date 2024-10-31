@@ -84,13 +84,14 @@ def server(host, port):
     logger.info(f"Le serveur tourne sur {host}:{port}")
     compteur = 0
     while True :
-        
+        print(compteur)
         if compteur == 10 :
             sys.exit()
-        s.settimeout(6)                
+        s.settimeout(60)                
         try :
             
             conn, addr = s.accept()
+            compteur = 0
             data = conn.recv(1024)
             if not data : 
                 sys.exit()
