@@ -92,11 +92,13 @@ def server(host, port):
             if now.minute != last_minute :
                 last_minute = now.minute
                 logger.warning(f"Aucun client depuis plus de une minute.")
-            conn, addr = s.accept()
-            data = conn.recv(1024)
-            if not data : 
-                sys.exit()
-            logger.info(f"Un client ({addr[0]}) s'est connecté.")
+            if s.accept() :
+                
+                conn, addr = s.accept()
+                data = conn.recv(1024)
+                if not data : 
+                    sys.exit()
+                logger.info(f"Un client ({addr[0]}) s'est connecté.")
         try :
             
             
