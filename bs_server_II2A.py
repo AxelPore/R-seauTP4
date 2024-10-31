@@ -18,6 +18,7 @@ class CustomFormatter(logging.Formatter):
     red = '\x1b[38;5;196m'
     bold_red = '\x1b[31;1m'
     reset = '\x1b[0m'
+    datefmt= "%Y-%m-%d %H:%M:%S"
 
     def __init__(self, fmt):
         super().__init__()
@@ -25,7 +26,7 @@ class CustomFormatter(logging.Formatter):
         self.FORMATS = {
             logging.DEBUG: self.grey + self.fmt + self.reset,
             logging.INFO: self.blue + self.fmt + self.reset,
-            logging.WARNING: self.yellow + self.fmt + self.reset,
+            logging.WARNING: self.yellow + self.datefmt + self.fmt + self.reset,
             logging.ERROR: self.red + self.fmt + self.reset,
             logging.CRITICAL: self.bold_red + self.fmt + self.reset
         }
@@ -46,6 +47,7 @@ file_handler.setFormatter(logging.Formatter(fmt))
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
+    
 
 
 
