@@ -118,7 +118,7 @@ def server(host, port):
                 conn.sendall(response.encode('utf-8'))
                 logger.info(f"Réponse envoyée au client {addr[0]} : \"{response}\".")
             conn.close()
-            sys.exit()
+            
             
             
         
@@ -127,7 +127,7 @@ def server(host, port):
             logger.warning(f"Aucun client depuis plus de une minute.")
             continue
         conn.close()
-        sys.exit()
+        
 
 def main() :
     port = 13337
