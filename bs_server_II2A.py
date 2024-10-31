@@ -16,11 +16,11 @@ class CustomFormatter(logging.Formatter):
     bold_red = "\x1b[31;1m"
     reset = "\x1b[0m"
     format = "%(asctime)s  %(levelname)s  %(message)s"
-
+    datefmt="%Y-%m-%d %H:%M:%S"
     FORMATS = {
         logging.DEBUG: grey + format + reset,
         logging.INFO: grey + format + reset,
-        logging.WARNING: yellow + format + reset,
+        logging.WARNING: yellow + datefmt + reset + format,
         logging.ERROR: red + format + reset,
         logging.CRITICAL: bold_red + format + reset
     }
