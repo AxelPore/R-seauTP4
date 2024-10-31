@@ -84,17 +84,17 @@ def server(host, port):
     logger.info(f"Le serveur tourne sur {host}:{port}")
     now = datetime.datetime.now()
     last_minute = now.minute
-    
+    addr = None
 
     while True :
-        
-        if now.minute != last_minute :
+        while addr == None :
+            
+            if now.minute != last_minute :
                 last_minute = now.minute
                 logger.warning(f"Aucun client depuis plus de une minute.")
         try :
             conn, addr = s.accept()
             data = conn.recv(1024)
-            print(addr)
             if not data : 
                 sys.exit()
             logger.info(f"Un client ({addr[0]}) s'est connecté.")
