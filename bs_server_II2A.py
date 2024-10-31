@@ -39,7 +39,6 @@ class CustomFormatter(logging.Formatter):
 console_handler = logging.StreamHandler()
 file_handler = logging.FileHandler("/var/log/bs_server/bs_server.log", mode="a", encoding="utf-8")
 
-file_handler.setFormatter(CustomFormatter)
 console_handler.setFormatter(CustomFormatter)
 
 logger.addHandler(console_handler)
