@@ -8,48 +8,52 @@ import datetime
 
 logger = logging.getLogger("logs")
 logger.setLevel(10)
+
+fmt = "%(asctime)s  %(levelname)8s  %(message)s"
 class CustomFormatter(logging.Formatter):
 
-    grey = "\x1b[38;20m"
-    yellow = "\x1b[33;20m"
-    red = "\x1b[31;20m"
-    bold_red = "\x1b[31;1m"
-    reset = "\x1b[0m"
-    format = "%(asctime)s  %(levelname)s  %(message)s"
-    datefmt="%Y-%m-%d %H:%M:%S"
-    
-    
+    grey = '\x1b[38;21m'
+    blue = '\x1b[38;5;39m'
+    yellow = '\x1b[38;5;226m'
+    red = '\x1b[38;5;196m'
+    bold_red = '\x1b[31;1m'
+    reset = '\x1b[0m'
+
     def __init__(self, fmt):
         super().__init__()
         self.fmt = fmt
         self.FORMATS = {
-            logging.DEBUG: self.grey + self.format + self.reset,
-            logging.INFO: self.grey + self.format + self.reset,
-            logging.WARNING: self.yellow + self.datefmt + self.reset + self.format,
-            logging.ERROR: self.red + self.format + self.reset,
-            logging.CRITICAL: self.bold_red + self.format + self.reset
+            logging.DEBUG: self.grey + self.fmt + self.reset,
+            logging.INFO: self.blue + self.fmt + self.reset,
+            logging.WARNING: self.yellow + self.fmt + self.reset,
+            logging.ERROR: self.red + self.fmt + self.reset,
+            logging.CRITICAL: self.bold_red + self.fmt + self.reset
         }
-        
+
     def format(self, record):
         log_fmt = self.FORMATS.get(record.levelno)
         formatter = logging.Formatter(log_fmt)
         return formatter.format(record)
-
-
+    
 console_handler = logging.StreamHandler()
-file_handler = logging.FileHandler("/var/log/bs_server/bs_server.log", mode="a", encoding="utf-8")
+console_handler.setLevel(10)
+console_handler.setFormatter(CustomFormatter(fmt))
 
-console_handler.setFormatter(CustomFormatter)
+file_handler = logging.FileHandler("/var/log/bs_server/bs_server.log", mode="a", encoding="utf-8")
+file_handler.setLevel(10)
+file_handler.setFormatter(logging.Formatter(fmt))
 
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
-# formatter = logging.Formatter(
-    
-#     "{asctime}  {levelname}  {message}",
-#     style="{",
-#     datefmt="%Y-%m-%d %H:%M:%S",
-# )
+
+
+
+
+
+
+
+
 
 parser = argparse.ArgumentParser()
 parser = argparse.ArgumentParser(add_help=False)
