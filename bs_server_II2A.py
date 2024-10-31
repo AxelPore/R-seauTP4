@@ -84,9 +84,10 @@ def server(host, port):
     logger.info(f"Le serveur tourne sur {host}:{port}")
     now = datetime.datetime.now()
     last_minute = now.minute
-    print(last_minute, now.minute)
+    
 
     while True :
+        print(last_minute, now.minute)
         if now.minute != last_minute :
                 last_minute = now.minute
                 logger.warning(f"Aucun client depuis plus de une minute.")
@@ -102,7 +103,7 @@ def server(host, port):
             
             data = conn.recv(1024)
             
-            if not data : break
+            if not data : continue
             message = data.decode()
             logger.info(f"Le client {addr[0]} a envoyé \"{message}\".")
             response = ""
@@ -130,7 +131,7 @@ def server(host, port):
         except socket.error:
             
             print("Error Occured.")
-            break
+            continue
         conn.close()
         sys.exit()
 
