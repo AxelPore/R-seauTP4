@@ -24,11 +24,11 @@ class CustomFormatter(logging.Formatter):
         super().__init__()
         self.fmt = fmt
         self.FORMATS = {
-            logging.DEBUG: "%(asctime)s" + self.grey + self.fmt + self.reset + "%(message)s",
-            logging.INFO: "%(asctime)s" + self.blue + self.fmt + self.reset + "%(message)s",
-            logging.WARNING: "%(asctime)s" + self.yellow + self.fmt + self.reset + "%(message)s",
-            logging.ERROR: "%(asctime)s" + self.red + self.fmt + self.reset + "%(message)s",
-            logging.CRITICAL: "%(asctime)s" + self.bold_red + self.fmt + self.reset + "%(message)s",
+            logging.DEBUG: "%(asctime)s" + self.grey + self.fmt + self.reset + " %(message)s",
+            logging.INFO: "%(asctime)s" + self.blue + self.fmt + self.reset + " %(message)s",
+            logging.WARNING: "%(asctime)s" + self.yellow + self.fmt + self.reset + " %(message)s",
+            logging.ERROR: "%(asctime)s" + self.red + self.fmt + self.reset + " %(message)s",
+            logging.CRITICAL: "%(asctime)s" + self.bold_red + self.fmt + self.reset + " %(message)s",
             
         }
 
