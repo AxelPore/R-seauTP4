@@ -5,7 +5,9 @@ import logging
 
 logger = logging.getLogger("logs")
 logger.setLevel(10)
+
 fmt = "%(asctime)s %(levelname)8s %(message)s"
+
 class CustomFormatter(logging.Formatter):
 
     grey = '\x1b[38;21m'
@@ -21,11 +23,11 @@ class CustomFormatter(logging.Formatter):
         super().__init__()
         self.fmt = fmt
         self.FORMATS = {
-            logging.DEBUG: self.fmt,
-            logging.INFO: self.fmt,
-            logging.WARNING: self.fmt,
-            logging.ERROR: self.fmt,
-            logging.CRITICAL: self.fmt,
+            logging.DEBUG: "%(asctime)s" + self.grey + self.fmt + self.reset + " %(message)s",
+            logging.INFO: "%(asctime)s" + self.white + self.fmt + self.reset + " %(message)s",
+            logging.WARNING: "%(asctime)s" + self.yellow + self.fmt + self.reset + " %(message)s",
+            logging.ERROR: "%(asctime)s" + self.red + self.fmt + self.reset + " %(message)s",
+            logging.CRITICAL: "%(asctime)s" + self.bold_red + self.fmt + self.reset + " %(message)s",
             
         }
 
@@ -33,16 +35,12 @@ class CustomFormatter(logging.Formatter):
         log_fmt = self.FORMATS.get(record.levelno)
         formatter = logging.Formatter(log_fmt, datefmt="%Y-%m-%d %H:%M:%S")
         return formatter.format(record)
-    
-console_handler = logging.StreamHandler()
-console_handler.setLevel(10)
-console_handler.setFormatter(CustomFormatter(fmt))
 
 file_handler = logging.FileHandler("/var/log/bs_server/bs_server.log", mode="a", encoding="utf-8")
 file_handler.setLevel(10)
 file_handler.setFormatter(logging.Formatter(fmt))
 
-logger.addHandler(console_handler)
+
 logger.addHandler(file_handler)
 
 
