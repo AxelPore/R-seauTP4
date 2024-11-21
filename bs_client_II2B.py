@@ -54,21 +54,23 @@ s.connect((host, port))
 try :
     s.sendall(b"Hello there")
     print(f"Connecté avec succès au serveur {host} sur le port {port}")
+    logger.info(f"Connexion réussie à {host}:{port}.")
 except :
+    logger.error(f"Impossible de se connecter au serveur {host} sur le port {port}.")
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((host, port))
-logger.info(f"Un client  s'est connecté.")
+
 message = input('Que veux-tu envoyer au serveur : ')
 if type(message) != str :
     raise TypeError
 elif not re.search(r'[a-z,A-Z,0-9,\s]*(meo)[a-z,A-Z,0-9,\s]*|[a-z,A-Z,0-9,\s]*(waf)[a-z,A-Z,0-9,\s]*', message):
     raise ValueError("Data not sent, can only send 'meo' or 'waf'. Piece of shit of human !")
 s.sendall(message.encode('utf-8'))
-
+logger.info(f"Message envoyé au serveur {host} : {message}.")
 data = s.recv(1024)
 
 response = data.decode()
-
+logger.info(f"Réponse reçue du serveur {host} : {response}.")
 print(f"Le serveur a répondu {repr(response)}")
 
 s.close()
