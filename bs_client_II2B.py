@@ -36,7 +36,7 @@ class CustomFormatter(logging.Formatter):
         formatter = logging.Formatter(log_fmt, datefmt="%Y-%m-%d %H:%M:%S")
         return formatter.format(record)
 
-file_handler = logging.FileHandler("/var/log/bs_server/bs_server.log", mode="a", encoding="utf-8")
+file_handler = logging.FileHandler("/var/log/bs_clientlog/bs_server.log", mode="a", encoding="utf-8")
 file_handler.setLevel(10)
 file_handler.setFormatter(logging.Formatter(fmt))
 
