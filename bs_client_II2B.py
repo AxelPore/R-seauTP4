@@ -49,9 +49,10 @@ port = 13337
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-s.connect((host, port))
+
 
 try :
+    s.connect((host, port))
     s.sendall(b"Hello there")
     print(f"Connecté avec succès au serveur {host} sur le port {port}")
     logger.info(f"Connexion réussie à {host}:{port}.")
