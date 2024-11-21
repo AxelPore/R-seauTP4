@@ -58,6 +58,7 @@ try :
     logger.info(f"Connexion réussie à {host}:{port}.")
 except :
     logger.error(f"Impossible de se connecter au serveur {host} sur le port {port}.")
+    sys.exit()
 
 message = input('Que veux-tu envoyer au serveur : ')
 if type(message) != str :
