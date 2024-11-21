@@ -5,8 +5,5 @@ def compteur() :
         print(i)
         time.sleep(0.5)
 
-def main():
-    tasks = [ compteur(), compteur() ]
-    time.gather(*tasks)
-
-main()
+compteur()
+compteur()
