@@ -113,6 +113,7 @@ def server(host, port):
     compteur = 0
     while True :
         if compteur == 10 :
+            logger.warning(f"Aucun client depuis plus de 10 minute. Mise en veille du serveur")
             sys.exit()
         s.settimeout(6)                
         try :
