@@ -57,7 +57,7 @@ try :
 except :
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((host, port))
-
+logger.info(f"Un client  s'est connecté.")
 message = input('Que veux-tu envoyer au serveur : ')
 if type(message) != str :
     raise TypeError
