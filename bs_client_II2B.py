@@ -43,6 +43,9 @@ file_handler.setFormatter(logging.Formatter(fmt))
 
 logger.addHandler(file_handler)
 
+class color :
+    red = '\x1b[38;5;196m'
+    default = '\033[0m'
 
 host = "10.1.2.17"
 port = 13337
@@ -58,6 +61,7 @@ try :
     logger.info(f"Connexion réussie à {host}:{port}.")
 except :
     logger.error(f"Impossible de se connecter au serveur {host} sur le port {port}.")
+    print(color.red + f"ERROR Impossible de se connecter au serveur {host} sur le port {port}." + color.default)
     sys.exit()
 
 message = input('Que veux-tu envoyer au serveur : ')
