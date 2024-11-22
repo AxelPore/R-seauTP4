@@ -29,7 +29,7 @@ async def main():
 
     url = args.url
 
-    page = await get_content(url).text
+    page = await get_content(url)
 
     await write_content(page, file)
 
