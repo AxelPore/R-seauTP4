@@ -3,7 +3,7 @@ import sys
 import requests
 
 def get_content(url):
-    page = requests.get("https://example.org")
+    page = requests.get(url)
     return page
 
 def write_content(page, file):
