@@ -25,7 +25,7 @@ def main():
         sys.exit(1)
 
     urlfile = args.file
-    urlfile = "/home/~/R-seauTP4/" + urlfile
+    urlfile = "/tmp/" + urlfile
     with open(urlfile, 'r') as f :
         for line in f :
             page = get_content(line).text
