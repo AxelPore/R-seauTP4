@@ -26,7 +26,7 @@ class CustomFormatter(logging.Formatter):
             logging.DEBUG: "%(asctime)s" + self.grey + self.fmt + self.reset + " %(message)s",
             logging.INFO: "%(asctime)s" + self.white + self.fmt + self.reset + " %(message)s",
             logging.WARNING: "%(asctime)s" + self.yellow + self.fmt + self.reset + " %(message)s",
-            logging.ERROR: "%(asctime)s" + self.red + self.fmt + self.reset + " %(message)s",
+            logging.ERROR: self.red + "%(asctime)s" + self.fmt  + " %(message)s"+ self.reset,
             logging.CRITICAL: "%(asctime)s" + self.bold_red + self.fmt + self.reset + " %(message)s",
             
         }
