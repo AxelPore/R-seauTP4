@@ -32,7 +32,7 @@ async def main():
     tasks = []
     with open(urlfile, 'r') as f :
         for line in f :
-            tasks.append(write_content(await get_content(line.strip()).text, "/tmp/web_" + path.basename(line.strip())))
+            tasks.append(write_content(await get_content(line.strip()).text, "/tmp/web_async_" + path.basename(line.strip())))
     await asyncio.gather(*tasks)
 
 
