@@ -28,7 +28,7 @@ def main():
     urlfile = "/tmp/" + urlfile
     with open(urlfile, 'r') as f :
         for line in f :
-            print(page)
+            print(line)
             page = get_content(line).text
             file = "/tmp/web_" + path.basename(line)
             write_content(page, file)
