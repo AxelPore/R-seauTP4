@@ -4,8 +4,8 @@ import requests
 from os import path
 
 def get_content(url):
-    print(url)
     page = requests.get(url)
+    page.raise_for_status()
     return page
 
 def write_content(page, file):
