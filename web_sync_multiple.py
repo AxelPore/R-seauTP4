@@ -30,7 +30,7 @@ def main():
     with open(urlfile, 'r') as f :
         for line in f :
             page = get_content(line.strip()).text
-            file = "/tmp/web_" + path.basename(line)
+            file = "/tmp/web_" + path.basename(line.strip())
             write_content(page, file)
 
     
