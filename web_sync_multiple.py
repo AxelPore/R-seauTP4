@@ -4,8 +4,7 @@ import requests
 from os import path
 
 def get_content(url):
-    lol = "https://example.org"
-    page = requests.get(lol)
+    page = requests.get(url)
     page.raise_for_status()
     return page
 
@@ -30,7 +29,7 @@ def main():
     urlfile = "/tmp/" + urlfile
     with open(urlfile, 'r') as f :
         for line in f :
-            page = get_content(line).text
+            page = get_content(line.strip()).text
             file = "/tmp/web_" + path.basename(line)
             write_content(page, file)
 
