@@ -16,6 +16,7 @@ def main():
     parser.add_argument("web_sync.py", action="store")
     args = parser.parse_args()
     url = args
+    print(url)
     page = get_content(url)
     write_content(page, file)
     
