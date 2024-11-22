@@ -5,8 +5,8 @@ import logging
 
 logger = logging.getLogger("logs")
 logger.setLevel(10)
-
-fmt = "%(asctime)s %(levelname)8s %(message)s"
+fmt = "%(levelname)8s"
+fmt2 = "%(asctime)s %(levelname)8s %(message)s"
 
 class CustomFormatter(logging.Formatter):
 
@@ -38,14 +38,14 @@ class CustomFormatter(logging.Formatter):
 
 file_handler = logging.FileHandler("/var/log/bs_clientlog/bs_server.log", mode="a", encoding="utf-8")
 file_handler.setLevel(10)
-file_handler.setFormatter(logging.Formatter(fmt))
+file_handler.setFormatter(logging.Formatter(fmt2))
 
+console_handler = logging.StreamHandler()
+console_handler.setLevel(40)
+console_handler.setFormatter(CustomFormatter(fmt))
 
+logger.addHandler(console_handler)
 logger.addHandler(file_handler)
-
-class color :
-    red = '\x1b[38;5;196m'
-    default = '\033[0m'
 
 host = "10.1.2.17"
 port = 13337
@@ -61,7 +61,6 @@ try :
     logger.info(f"Connexion réussie à {host}:{port}.")
 except :
     logger.error(f"Impossible de se connecter au serveur {host} sur le port {port}.")
-    print(color.red + f"ERROR Impossible de se connecter au serveur {host} sur le port {port}." + color.default)
     sys.exit()
 
 message = input('Que veux-tu envoyer au serveur : ')
