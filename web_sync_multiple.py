@@ -4,7 +4,8 @@ import requests
 from os import path
 
 def get_content(url):
-    page = requests.get(str(url))
+    lol = "https://example.org"
+    page = requests.get(lol)
     page.raise_for_status()
     return page
 
