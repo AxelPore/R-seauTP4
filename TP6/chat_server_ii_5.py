@@ -27,7 +27,7 @@ async def handle_client_msg(reader, writer):
 
 
         for addrs in CLIENTS.keys():
-            if addrs[0] != addr[0]:
+            if addrs[0] != addr[0] and 'Hello|' not in message :
                 List = message.split("\n")
                 IP = addr[0].replace("'", "")
                 CLIENTS[addrs]["w"].write(f"{pseudo} a dit : {List[0]}".encode())
