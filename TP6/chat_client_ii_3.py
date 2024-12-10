@@ -6,12 +6,13 @@ import asyncio
 
 async def Input(reader, writer) :
     while True :
-        data = []
+        messages = []
         while True:
             message = await aioconsole.ainput("Message : ")
             if not message:
                 break
-            data.append(message)
+            messages.append(message)
+        data = '\n'.join(messages)
         writer.write(data.encode())
         await writer.drain()
 
