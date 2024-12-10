@@ -21,8 +21,6 @@ async def handle_client_msg(reader, writer):
                 IP = addr[0].replace("'", "")
                 CLIENTS[addrs]["w"].write(f"{IP}:{addr[1]} a dit : {List[0]}".encode())
                 await CLIENTS[addrs]["w"].drain()
-                CLIENTS[addrs]['w'].write(b"\n")
-                await CLIENTS[addrs]["w"].drain()
                 print(f"Message received from {IP}:{addr[1]!r} : {message!r}")
 
 
