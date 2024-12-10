@@ -18,13 +18,14 @@ async def handle_client_msg(reader, writer):
         CLIENTS[addr]['w'] = writer
         CLIENTS[addr]['r'] = reader
         CLIENTS[addr]['pseudo'] = pseudo
-        CLIENTS[addrs]["w"].write(f"Annonce : {pseudo} a rejoint la chatroom".encode())
+        
         
         
 
 
         for addrs in CLIENTS.keys():
             if addrs[0] != addr[0] and 'Hello|' not in message :
+                CLIENTS[addrs]["w"].write(f"Annonce : {pseudo} a rejoint la chatroom".encode())
                 List = message.split("\n")
                 IP = addr[0].replace("'", "")
                 CLIENTS[addrs]["w"].write(f"{pseudo} a dit : {List[0]}".encode())
