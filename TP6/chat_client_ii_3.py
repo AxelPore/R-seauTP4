@@ -14,14 +14,16 @@ async def Input(reader, writer) :
         data = '\n'.join(messages)
         writer.write(data.encode())
         await writer.drain()
-        break
+        await Recieve(reader, writer)
+        
 
 
 async def Recieve(reader, writer) :
     while True:
         data = await reader.read(1024)
         print(f"Message du serveur : {data.decode()}")
-        break
+        if not data:
+            break
 
 async def main() :
     reader, writer = await asyncio.open_connection(host="10.1.2.17", port=13337)
