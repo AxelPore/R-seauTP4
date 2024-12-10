@@ -17,9 +17,9 @@ async def handle_client_msg(reader, writer):
         message = data.decode()
         for addrs in CLIENTS.keys():
             if addrs[0] != addr[0]:
-                messList = message.split("\n")
+                List = message.split("\n")
                 IP = addr[0].replace("'", "")
-                CLIENTS[addrs]["w"].write(f"{IP}:{addr[1]} a dit : {messList[0]}".encode())
+                CLIENTS[addrs]["w"].write(f"{IP}:{addr[1]} a dit : {List[0]}".encode())
                 await CLIENTS[addrs]["w"].drain()
                 CLIENTS[addrs]['w'].write(b"\n")
                 await CLIENTS[addrs]["w"].drain()
