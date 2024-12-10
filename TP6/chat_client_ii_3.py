@@ -19,9 +19,8 @@ async def Input(reader, writer) :
 async def Recieve(reader, writer) :
     while True:
         data = await reader.read(1024)
-        if not data:
-            break
         print(f"{data.decode()}")
+        break
 
 async def main() :
     reader, writer = await asyncio.open_connection(host="10.1.2.17", port=13337)
