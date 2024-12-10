@@ -14,6 +14,7 @@ async def Input(reader, writer) :
         data = '\n'.join(messages)
         writer.write(data.encode())
         await writer.drain()
+        break
 
 
 async def Recieve(reader, writer) :
