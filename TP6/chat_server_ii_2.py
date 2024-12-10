@@ -10,8 +10,8 @@ async def Server(reader, writer):
 
         message = data.decode()
         print(f"Message reçue du client : {message!r} - IP client : {addr!r}")
-
-        writer.write(f"Hello {addr[0]!r} : {addr[1]!r}".encode())
+        IP = addr[0].replace("'", "")
+        writer.write(f"Hello {IP} : {addr[1]!r}".encode())
 
         await writer.drain()
 
