@@ -7,7 +7,7 @@ import asyncio
 async def Input(reader, writer) :
     data = ""
     while True:
-        message = await aioconsole.ainput("Message :")
+        message = await aioconsole.ainput("Message : ")
         if not message:
             break
         writer.write(data.encode())
