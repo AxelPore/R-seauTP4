@@ -1,6 +1,6 @@
 import asyncio
 
-async def Server(reader, writer):
+async def handle_client_msg(reader, writer):
     while True:
         data = await reader.read(1024)
         addr = writer.get_extra_info('peername')
@@ -17,7 +17,7 @@ async def Server(reader, writer):
         
 
 async def main():
-    server = await asyncio.start_server(Server, "10.1.2.17", 13337)
+    server = await asyncio.start_server(handle_client_msg, "10.1.2.17", 13337)
 
     addrs = ", ".join(str(sock.getsockname()) for sock in server.sockets)
     print(f"Serving on  {addrs}")
