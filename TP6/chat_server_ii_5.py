@@ -12,17 +12,18 @@ async def handle_client_msg(reader, writer):
 
         message = data.decode()
         pseudo = ""
-        for addrs in CLIENTS.keys():
-            if addrs[0] == addr[0] and pseudo == "":   
-                if 'Hello' in message :
-                    pseudo = message.split('|')[1]
-                    CLIENTS[addrs]["w"].write(f"Annonce : {pseudo} a rejoint la chatroom".encode())
-            else :
-                CLIENTS[addrs]["w"].write(f"{pseudo} est connecté".encode())
         CLIENTS[addr] = {}
         CLIENTS[addr]['w'] = writer
         CLIENTS[addr]['r'] = reader
         CLIENTS[addr]['pseudo'] = pseudo
+        for addrs in CLIENTS.keys():
+            if addrs[0] == addr[0] and pseudo == "":   
+                if 'Hello|' in message :
+                    pseudo = message.split('|')[1]
+                    CLIENTS[addrs]["w"].write(f"Annonce : {pseudo} a rejoint la chatroom".encode())
+            else :
+                CLIENTS[addrs]["w"].write(f"{pseudo} est connecté".encode())
+        
 
 
         for addrs in CLIENTS.keys():
