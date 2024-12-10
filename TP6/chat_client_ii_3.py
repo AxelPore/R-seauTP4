@@ -21,7 +21,7 @@ async def Input(reader, writer) :
 async def Recieve(reader, writer) :
     while True:
         data = await reader.read(1024)
-        print(f"Message du serveur : {data.decode()}")
+        print('\n' + f"Message du serveur : {data.decode()}")
         if not data:
             break
 
