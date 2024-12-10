@@ -14,6 +14,7 @@ async def Server(reader, writer):
         writer.write(f"Hello {IP} : {addr[1]!r}".encode())
 
         await writer.drain()
+        break
 
 async def main():
     server = await asyncio.start_server(Server, "10.1.2.17", 13337)
