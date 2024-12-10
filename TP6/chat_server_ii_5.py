@@ -21,7 +21,7 @@ async def handle_client_msg(reader, writer):
         
         
         for addrs in CLIENTS.keys():
-            if addrs[0] != addr[0] and 'Hello|' not in message :
+            if addrs[0] != addr[0] :
                 CLIENTS[addrs]["w"].write(f"Annonce : {pseudo} a rejoint la chatroom".encode())
                 await CLIENTS[addrs]["w"].drain()
 
