@@ -11,18 +11,18 @@ async def handle_client_msg(reader, writer):
             break
 
         message = data.decode()
-        pseudo = ""
+        if 'Hello|' in message :
+            pseudo = message.split('|')[1]
+        for addrs in CLIENTS.keys():
+            if addrs[0] == addr[0] and addrs['pseudo'] != pseudo:   
+                CLIENTS[addrs]["w"].write(f"Annonce : {pseudo} a rejoint la chatroom".encode())
+            else :
+                CLIENTS[addrs]["w"].write(f"{pseudo} est connecté".encode())
         CLIENTS[addr] = {}
         CLIENTS[addr]['w'] = writer
         CLIENTS[addr]['r'] = reader
         CLIENTS[addr]['pseudo'] = pseudo
-        for addrs in CLIENTS.keys():
-            if addrs[0] == addr[0] and pseudo == "":   
-                if 'Hello|' in message :
-                    pseudo = message.split('|')[1]
-                    CLIENTS[addrs]["w"].write(f"Annonce : {pseudo} a rejoint la chatroom".encode())
-            else :
-                CLIENTS[addrs]["w"].write(f"{pseudo} est connecté".encode())
+        
         
 
 
@@ -32,7 +32,7 @@ async def handle_client_msg(reader, writer):
                 IP = addr[0].replace("'", "")
                 CLIENTS[addrs]["w"].write(f"{pseudo} a dit : {List[0]}".encode())
                 await CLIENTS[addrs]["w"].drain()
-                print(f"Message received from {IP}:{addr[1]!r} : {message!r}")
+                print(f"Message received from {pseudo} : {message!r}")
 
 
 async def main():
