@@ -13,11 +13,12 @@ async def handle_client_msg(reader, writer):
         message = data.decode()
         if 'Hello|' in message :
             pseudo = message.split('|')[1]  
-            CLIENTS[addrs]["w"].write(f"Annonce : {pseudo} a rejoint la chatroom".encode())
+            
         CLIENTS[addr] = {}
         CLIENTS[addr]['w'] = writer
         CLIENTS[addr]['r'] = reader
         CLIENTS[addr]['pseudo'] = pseudo
+        CLIENTS[addrs]["w"].write(f"Annonce : {pseudo} a rejoint la chatroom".encode())
         
         
 
