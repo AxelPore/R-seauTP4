@@ -29,8 +29,7 @@ async def main() :
     reader, writer = await asyncio.open_connection(host="10.1.2.17", port=13337)
     pseudo = input("Pseudo : ")
     writer.write(("Hello|" + pseudo).encode())
-    await writer.drain()
-    tasks = [Input(reader, writer), Recieve(reader, writer)]
+    tasks = [writer.drain(), Input(reader, writer), Recieve(reader, writer)]
     await asyncio.gather(*tasks)
 
 if __name__ == "__main__":
