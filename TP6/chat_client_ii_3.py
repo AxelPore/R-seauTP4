@@ -10,8 +10,8 @@ async def Input(reader, writer) :
         message = await aioconsole.ainput("Message :")
         if not message:
             break
-    writer.write(data.encode())
-    await writer.drain()
+        writer.write(data.encode())
+        await writer.drain()
 
 
 async def Recieve(reader, writer) :
