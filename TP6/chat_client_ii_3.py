@@ -3,8 +3,6 @@ import sys
 import aioconsole
 import asyncio
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect(('10.1.1.22',8888))
 
 async def asInput(r, w) :
     while True:
@@ -29,12 +27,11 @@ async def asRecieve(r, w) :
         print(f"{data.decode()}")
 
 async def main() :
-    reader, writer = await asyncio.open_connection(host="10.1.1.22", port=8888)
+    reader, writer = await asyncio.open_connection(host="10.1.2.17", port=13337)
     tasks = [asInput(reader, writer), asRecieve(reader, writer)]
     await asyncio.gather(*tasks)
 
 if __name__ == "__main__":
     asyncio.run(main())
-    s.close()
 
 sys.exit(0)
