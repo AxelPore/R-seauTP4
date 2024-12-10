@@ -9,9 +9,8 @@ async def Input(reader, writer) :
         messages = []
         while True:
             message = await aioconsole.ainput("Message : ")
-            if not message:
-                break
             messages.append(message)
+            break
         data = '\n'.join(messages)
         writer.write(data.encode())
         await writer.drain()
