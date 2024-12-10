@@ -3,7 +3,8 @@ import sys
 import aioconsole
 import asyncio
 
-
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(('10.1.1.22',8888))
 
 async def asInput(r, w) :
     while True:
@@ -34,5 +35,6 @@ async def main() :
 
 if __name__ == "__main__":
     asyncio.run(main())
+    s.close()
 
 sys.exit(0)
