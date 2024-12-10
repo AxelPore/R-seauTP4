@@ -11,7 +11,7 @@ async def Server(reader, writer):
         message = data.decode()
         print(f"Message reçue du client : {message!r} - IP client : {addr!r}")
 
-        writer.write(f"Hello {addr!r}".encode())
+        writer.write(f"Hello {addr[0]!r}".encode())
 
         await writer.drain()
 
